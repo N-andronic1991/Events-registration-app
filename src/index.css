@@ -1,0 +1,45 @@
+@import-normalize; /* bring in normalize.css styles */
+:root {
+  --font-family: 'Inter', sans-serif;
+  --main-color: #101828;
+  --text-color: #475467;
+  --button-color: #e44848;
+  --inputs: #f7f7f7;
+  --background: #fff;
+  --transition-duration: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: #fff;
+  color: var(--main-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

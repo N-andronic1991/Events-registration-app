@@ -1,5 +1,5 @@
 const EventsParticipantsPage = () => {
-  return <div></div>;
+  return <div>users</div>;
 };
 
 export default EventsParticipantsPage;

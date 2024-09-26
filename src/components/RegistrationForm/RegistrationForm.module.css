@@ -1,0 +1,91 @@
+form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px;
+  border: 1px solid #000;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.radio {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+.radioItem {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+input[type='radio'] {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 0.5rem;
+}
+.errorMessage {
+  margin: 0px;
+  min-height: 10px;
+  color: #ef5050;
+  font-size: 12px;
+  font-weight: 400;
+}
+/* .datePickerWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.customDatepicker {
+  display: block;
+  width: 400px;
+  margin-bottom: 14px;
+  padding: 18px;
+  border-radius: 10px;
+  background-color: var(--inputs);
+  outline: none;
+  border: none;
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(16, 24, 40, 0.6);
+}
+
+.customDatepicker:focus,
+.inputText:focus {
+  border: 1px solid grey;
+}
+.iconCalendar {
+  position: absolute;
+  right: 30px;
+  top: 40%;
+  transform: translateY(-50%);
+  display: inline-block;
+  pointer-events: none;
+  fill: #fff;
+  stroke: var(--main-color);
+}
+
+.customCalendar {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 12px;
+} */

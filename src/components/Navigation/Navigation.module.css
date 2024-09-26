@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 15px;
+}
+
+.navLink {
+  display: inline-block;
+  padding: 12px;
+  font-family: var(--font-family);
+  font-size: 18px;
+  text-decoration: none;
+  color: rgb(51, 48, 48);
+  cursor: pointer;
+}
+.active {
+  color: var(--button-color);
+}

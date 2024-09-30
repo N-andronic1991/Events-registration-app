@@ -12,8 +12,10 @@ const EventsBoardPage = () => {
   const [loading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
   const [paginationData, setPaginationData] = useState({
     page: 1,
+    perPage: 8,
     totalPages: 0,
     hasNextPage: false,
     hasPreviousPage: false,
@@ -26,6 +28,7 @@ const EventsBoardPage = () => {
     async function fetchEvents() {
       try {
         setLoading(true);
+        setIsError(false);
         const response = await requestEvents(currentPage);
         setEvents(response.data.data);
         setPaginationData({
@@ -49,6 +52,7 @@ const EventsBoardPage = () => {
       {loading && <Loader />}
       {isError && <ErrorMessage />}
       {events && <EventsBoard events={events} />}
+
       <Pagination
         currentPage={paginationData.page}
         totalPages={paginationData.totalPages}

@@ -6,7 +6,9 @@ const EventCard = ({ _id, title, description, event_date, organizer }) => {
   return (
     <div className={css.event}>
       <h2 className={css.title}>{title}</h2>
-      <p className={css.info}>{description}</p>
+      <div className={`${css.info}, ${css.description}`}>
+        <p className={css.info}>{description}</p>
+      </div>
       <p className={css.info}>{event_date}</p>
       <p className={css.info}>{organizer}</p>
       <ul className={css.infoList}>

@@ -31,6 +31,7 @@ const Pagination = ({
             Prev
           </a>
         </li>
+
         {numbers.map(n => (
           <li
             key={n}
@@ -45,6 +46,7 @@ const Pagination = ({
             </a>
           </li>
         ))}
+
         <li className={clsx(css.pageItem, { [css.disabled]: !hasNextPage })}>
           <a onClick={nextPage} href="#" className={css.pageLink}>
             Next

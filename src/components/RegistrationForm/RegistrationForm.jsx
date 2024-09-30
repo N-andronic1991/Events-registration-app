@@ -1,9 +1,10 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import css from './RegistrationForm.module.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import { createEventUser } from '../../services/api';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 const RegistrationSchema = yup.object().shape({
   fullName: yup
@@ -22,64 +23,71 @@ const RegistrationSchema = yup.object().shape({
   heardFrom: yup.string(),
 });
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ eventId }) => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors },
     reset,
   } = useForm({
     resolver: yupResolver(RegistrationSchema),
   });
-  const onSubmit = formData => {
-    console.log('Form Data:', formData);
-    // You can send the form data to your backend or handle it as required.
+  const onSubmit = async formData => {
+    console.log('Fotm data:', formData);
+    try {
+      const { data } = await createEventUser(formData, eventId);
+      console.log(data);
+    } catch (err) {
+      console.error(err.message);
+    }
+
     reset();
   };
   return (
-    <div>
-      <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
-        <h2 className={css.title}>Event Registration</h2>
-        <label>
-          Full Name
-          <input
-            className={css.inputText}
-            name="fullName"
-            type="text"
-            placeholder="Full Name"
-            {...register('fullName')}
-          />
-        </label>
-        <div className={css.errorMessage}>
-          {errors.fullName && (
-            <p className={css.error}>{errors.fullName.message}</p>
-          )}
-        </div>
-        <label>
-          Email
-          <input
-            className={css.inputText}
-            name="email"
-            type="email"
-            placeholder="Email"
-            {...register('email')}
-          />
-        </label>
-        <div className={css.errorMessage}>
-          {errors.email && <p className={css.error}>{errors.email.message}</p>}
-        </div>
-        <label>
-          Date of birth
-          <input
-            className={css.inputText}
-            name="date"
-            type="date"
-            {...register('date')}
-          />
-        </label>
-
-        {/* <Controller
+    <form className={css.registerForm} onSubmit={handleSubmit(onSubmit)}>
+      <h2 className={css.title}>Event Registration</h2>
+      <label>
+        Full Name
+        <input
+          className={css.inputText}
+          type="text"
+          placeholder="Full Name"
+          {...register('fullName')}
+        />
+      </label>
+      <div className={css.errorMessage}>
+        {errors.fullName && (
+          <span className={css.error}>{errors.fullName.message}</span>
+        )}
+      </div>
+      <label>
+        Email
+        <input
+          className={css.inputText}
+          type="email"
+          placeholder="Email"
+          {...register('email')}
+        />
+      </label>
+      <div className={css.errorMessage}>
+        {errors.email && (
+          <span className={css.error}>{errors.email.message}</span>
+        )}
+      </div>
+      <label>
+        Date of birth
+        <input
+          className={css.inputText}
+          type="date"
+          {...register('dateOfBirth')}
+        />
+      </label>
+      <div className={css.errorMessage}>
+        {errors.dateOfBirth && (
+          <span className={css.error}>{errors.dateOfBirth.message}</span>
+        )}
+      </div>
+      {/* <Controller
           name="dateOfBirth"
           control={control}
           defaultValue={null}
@@ -102,39 +110,38 @@ const RegistrationForm = () => {
             </div>
           )}
         /> */}
-        <p>Where did you hear about this event:</p>
-        <ul className={css.radio}>
-          <li className={css.radioItem}>
-            <input
-              {...register('heardFrom')}
-              type="radio"
-              value="social media"
-              id="field-socials"
-            />
-            <label htmlFor="field-socials"> social media</label>
-          </li>
-          <li className={css.radioItem}>
-            <input
-              {...register('heardFrom')}
-              type="radio"
-              value="friends"
-              id="field-friends"
-            />
-            <label htmlFor="field-friends">friends</label>
-          </li>
-          <li className={css.radioItem}>
-            <input
-              {...register('heardFrom')}
-              type="radio"
-              value="myself"
-              id="field-myself"
-            />
-            <label htmlFor="field-myself">found myself</label>
-          </li>
-        </ul>
-        <button type="submit">Register</button>
-      </form>
-    </div>
+      <p>Where did you hear about this event:</p>
+      <ul className={css.radio}>
+        <li className={css.radioItem}>
+          <input
+            {...register('heardFrom')}
+            type="radio"
+            value="social media"
+            id="field-socials"
+          />
+          <label htmlFor="field-socials"> social media</label>
+        </li>
+        <li className={css.radioItem}>
+          <input
+            {...register('heardFrom')}
+            type="radio"
+            value="friends"
+            id="field-friends"
+          />
+          <label htmlFor="field-friends">friends</label>
+        </li>
+        <li className={css.radioItem}>
+          <input
+            {...register('heardFrom')}
+            type="radio"
+            value="myself"
+            id="field-myself"
+          />
+          <label htmlFor="field-myself">found myself</label>
+        </li>
+      </ul>
+      <button type="submit">Register</button>
+    </form>
   );
 };
 export default RegistrationForm;
